@@ -4,7 +4,9 @@ server:
 spring:
   application:
     name: product_Service
-
+  config:
+    import: configserver:http://localhost:9296
+  
   jpa:
     show-sql: true
     hibernate:
@@ -15,14 +17,14 @@ spring:
     password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch:registry: true
-    register-with-eureks: true
-    service-url:
-      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch:registry: true
+#    register-with-eureks: true
+#    service-url:
+#      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
 
 
 
