@@ -46,5 +46,11 @@ public class ProductRestController {
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
+    @PutMapping("/reduce-quantity")
+    public ResponseEntity<Void> reduceQuanitity(@RequestBody ProductDTO productDTO) {
+        productService.reduceQuanitity(productDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

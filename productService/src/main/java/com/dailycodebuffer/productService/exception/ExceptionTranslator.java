@@ -19,5 +19,13 @@ public class ExceptionTranslator {
                                                  .build(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(InsufficiantQuantityException.class)
+    public ResponseEntity<ErrorResponse> handleInsufficiantQuantityException(InsufficiantQuantityException exception) {
+        return new ResponseEntity<>(ErrorResponse.builder()
+                                                 .errorMessage(exception.getMessage())
+                                                 .errorCode(exception.getErrorCode())
+                                                 .build(), HttpStatus.CONFLICT);
+    }
+
 
 }

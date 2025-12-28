@@ -2,6 +2,7 @@ package com.dailycodebuffer.productService.service.impl;
 
 import com.dailycodebuffer.productService.dto.ProductDTO;
 import com.dailycodebuffer.productService.entity.Product;
+import com.dailycodebuffer.productService.exception.InsufficiantQuantityException;
 import com.dailycodebuffer.productService.exception.ProductNotFoundException;
 import com.dailycodebuffer.productService.repository.ProducrRepository;
 import com.dailycodebuffer.productService.service.ProductService;
@@ -69,5 +70,18 @@ public class ProductServiceImpl implements ProductService {
         log.info("ProductServiceImpl : deleteProduct : START");
         producrRepository.deleteById(id);
         log.info("ProductServiceImpl : deleteProduct : END");
+    }
+
+    @Override
+    public void reduceQuanitity(ProductDTO productDTO) {
+        log.info("ProductServiceImpl : reduceQuanitity : START : quantity :{}", productDTO.getQuantity());
+        Product product = producrRepository.findById(productDTO.getId())
+                                           .orElseThrow(() -> new ProductNotFoundException("Product not found", "PRODUVT_NOT_FOUNT"));
+        if (product.getQuantity() < productDTO.getQuantity()) {
+            throw new InsufficiantQuantityException("Product does not have sufficiant Quantity", "INSUFFICIENT_STOCK");
+        }
+        product.setQuantity(product.getQuantity() - productDTO.getQuantity());
+        producrRepository.save(product);
+        log.info("ProductServiceImpl : reduceQuanitity : END : productId :{}", productDTO.getId());
     }
 }

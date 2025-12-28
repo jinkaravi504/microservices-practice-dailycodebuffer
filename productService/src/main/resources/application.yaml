@@ -3,9 +3,18 @@ server:
 
 spring:
   application:
-    name: product_Service
+    name: product-Service
   config:
-    import: configserver:http://localhost:9296
+    import: optional:configserver:http://localhost:9296
+
+  cloud:
+    config:
+      enabled: true
+      retry:
+        max-attempts: 3
+        initial-interval: 1000
+        max-interval: 2000
+        multiplier: 1.5
   
   jpa:
     show-sql: true
