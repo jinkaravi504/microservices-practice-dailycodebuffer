@@ -1,5 +1,6 @@
 package com.dailycodebuffer.OrderService.dto;
 
+import com.dailycodebuffer.OrderService.entity.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,5 +27,7 @@ public class OrderDTO implements Serializable {
     private String orderStatus;
     private BigDecimal amount;
     private PaymentMode paymentMode;
+    private ProductDTO productDetails;
+    private TransactionDetailsDTO transactionDetails;
 
 }

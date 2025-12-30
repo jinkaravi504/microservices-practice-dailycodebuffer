@@ -19,4 +19,12 @@ public class ExceptionTranslator {
                                                  .build(), HttpStatus.valueOf(exception.getStatus()));
     }
 
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleProductNotFoundException(OrderNotFoundException exception) {
+        return new ResponseEntity<>(ErrorResponse.builder()
+                                                 .errorMessage(exception.getMessage())
+                                                 .errorCode(exception.getErrorCode())
+                                                 .build(), HttpStatus.NOT_FOUND);
+    }
+
 }

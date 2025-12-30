@@ -50,6 +50,7 @@
         <module>server-registry</module>
         <module>OrderService</module>
         <module>configServer</module>
-        <!-- <module>../suryoday-corporate-parent</module> -->
+        <module>PaymentService</module>
+        <module>CloudGateway</module>
     </modules>
 </project>

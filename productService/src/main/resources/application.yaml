@@ -26,6 +26,22 @@ spring:
     password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+
+logging:
+  pattern:
+    level: "%5p [traceId=%X{traceId}, spanId=%X{spanId}]"
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      type: w3c
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+
 #eureka:
 #  instance:
 #    prefer-ip-address: true

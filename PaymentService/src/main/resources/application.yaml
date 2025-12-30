@@ -1,0 +1,19 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: payment-service
+
+  config:
+    import: optional:configserver:http://localhost:9296
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/payment-service
+    username: root
+    password: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
